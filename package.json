@@ -1,0 +1,34 @@
+{
+  "name": "namastereact",
+  "version": "1.0.0",
+  "description": "This is a live course",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/shreyasvaidya9/namaste-react.git"
+  },
+  "author": "Shreyas Vaidya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shreyasvaidya9/namaste-react/issues"
+  },
+  "homepage": "https://github.com/shreyasvaidya9/namaste-react#readme",
+  "devDependencies": {
+    "@babel/core": "^7.21.0",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "parcel": "^2.8.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "browserslist": [
+    "cover 99.5%"
+  ]
+}

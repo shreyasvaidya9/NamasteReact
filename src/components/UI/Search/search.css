@@ -1,0 +1,17 @@
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 1rem;
+}
+
+button[type="submit"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+  color: #333;
+  cursor: pointer;
+  outline: none;
+}
