@@ -1,10 +1,11 @@
 import React, { useId } from "react";
 import { useMediaQuery } from "../../hooks";
+import { ABOVE_MEDIUM_SCREEN } from "../../utils/constants";
 
 import "./TextInput.css";
 
 const TextInput = ({ label, value, updateValue }) => {
-  const isAboveMediumScreen = useMediaQuery("(min-width: 768px)");
+  const isAboveMediumScreen = useMediaQuery(ABOVE_MEDIUM_SCREEN);
   const id = useId();
 
   const onChange = (event) => updateValue(event.target.value);

@@ -1,5 +1,10 @@
 import React, { useRef, useState } from "react";
 
+import {
+  Bars3Icon as Menubar,
+  XCircleIcon as Menuclose,
+} from "@heroicons/react/24/outline";
+
 import useMediaQuery from "../../hooks/useMediaQuery";
 
 import Title from "./Title";
@@ -8,31 +13,30 @@ import "./Header.css";
 import {
   DISPLAY_BLOCK,
   DISPLAY_NONE,
-  HAMBURGER_ICON,
-  CROSS_ICON,
   OPEN_MENU,
   CLOSE_MENU,
+  BELOW_MEDIUM_SCREEN,
 } from "../../utils/constants";
 
 const openMenuState = {
-  text: HAMBURGER_ICON,
+  component: <Menubar />,
   ariaLabel: OPEN_MENU,
 };
 
 const closeMenuState = {
-  text: CROSS_ICON,
+  component: <Menuclose />,
   ariaLabel: CLOSE_MENU,
 };
 
 const Header = () => {
   const navItemsRef = useRef();
   const [menuButton, setMenuButton] = useState(openMenuState);
-  const isBelow768 = useMediaQuery("(max-width: 768px)");
+  const isBelowMediumScreen = useMediaQuery(BELOW_MEDIUM_SCREEN);
 
   const toggleMenu = () => {
     const navItemsElement = navItemsRef?.current;
 
-    if (isBelow768) {
+    if (isBelowMediumScreen) {
       // get the current display property of the menu button
       const currentDisplay = window
         ?.getComputedStyle(navItemsElement)
@@ -57,9 +61,10 @@ const Header = () => {
         <button
           className="menu-btn"
           onClick={toggleMenu}
-          dangerouslySetInnerHTML={{ __html: menuButton.text }}
           aria-label={menuButton.ariaLabel}
-        />
+        >
+          {menuButton.component}
+        </button>
         <div className="nav-items" ref={navItemsRef}>
           <ul>
             <li>Home</li>
