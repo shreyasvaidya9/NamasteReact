@@ -1,4 +1,4 @@
-import React, { useMemo, memo } from "react";
+import React, { useMemo, memo, useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 
 import "./Restaurant.css";
@@ -7,11 +7,27 @@ import {
   CLOUDINARY_IMAGE_STRING,
 } from "./restaurant-dummy-data";
 
+import { SWIGGY_API } from "../../utils/constants";
+
 const Restaurant = ({ searchTerm }) => {
-  const restaurantData = SWIGGY_RESTAURANT_DATA?.data?.data?.cards;
+  const [restaurantData, setRestaurantData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(SWIGGY_API);
+      const value = await response.json();
+
+      const seeAllRestaurantData = value?.data?.cards?.find(
+        (cardList) => cardList.cardType === "seeAllRestaurants"
+      )?.data?.data?.cards;
+
+      setRestaurantData(seeAllRestaurantData);
+    };
+    fetchData();
+  }, []);
 
   const restaurantList = useMemo(() => {
-    const justRestaurantData = restaurantData.map((item) => item?.data);
+    const justRestaurantData = restaurantData?.map((item) => item?.data);
 
     // Return the complete restaurants list if no search term is present
     if (!searchTerm) {
@@ -22,11 +38,11 @@ const Restaurant = ({ searchTerm }) => {
     return justRestaurantData?.filter((restaurant) =>
       restaurant?.name?.toLowerCase()?.includes(searchTerm?.toLowerCase())
     );
-  }, [searchTerm]);
+  }, [searchTerm, restaurantData]);
 
   return (
     <div className="restaurant-list">
-      {restaurantList.length > 0 ? (
+      {restaurantList?.length > 0 ? (
         restaurantList?.map((restaurant) => {
           const { id, cloudinaryImageId, name, cuisines, avgRating } =
             restaurant;

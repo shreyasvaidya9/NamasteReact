@@ -10,3 +10,6 @@ export const CLOSE_MENU = `Close ${MENU}`;
 
 export const BELOW_MEDIUM_SCREEN = "(max-width: 768px)";
 export const ABOVE_MEDIUM_SCREEN = "(min-width: 768px)";
+
+export const SWIGGY_API =
+  "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.207533642135356&lng=72.87507209926844&page_type=DESKTOP_WEB_LISTING";
