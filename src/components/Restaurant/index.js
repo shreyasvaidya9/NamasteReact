@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, memo } from "react";
 import RestaurantCard from "./RestaurantCard";
 
 import "./Restaurant.css";
@@ -48,4 +48,4 @@ const Restaurant = ({ searchTerm }) => {
   );
 };
 
-export default Restaurant;
+export default memo(Restaurant);
