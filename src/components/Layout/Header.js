@@ -33,6 +33,8 @@ const Header = () => {
   const [menuButton, setMenuButton] = useState(openMenuState);
   const isBelowMediumScreen = useMediaQuery(BELOW_MEDIUM_SCREEN);
 
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   const toggleMenu = () => {
     const navItemsElement = navItemsRef?.current;
 
@@ -54,6 +56,8 @@ const Header = () => {
     }
   };
 
+  const updateAuthentication = () => setIsAuthenticated((value) => !value);
+
   return (
     <header>
       <nav className="navbar">
@@ -71,6 +75,15 @@ const Header = () => {
             <li>About</li>
             <li>Contact</li>
             <li>Cart</li>
+            {isAuthenticated ? (
+              <li>
+                <button onClick={updateAuthentication}>Logout</button>
+              </li>
+            ) : (
+              <li>
+                <button onClick={updateAuthentication}>Login / Register</button>
+              </li>
+            )}
           </ul>
         </div>
       </nav>

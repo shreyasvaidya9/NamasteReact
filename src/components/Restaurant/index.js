@@ -1,19 +1,19 @@
 import React, { useMemo, memo, useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
+import SkeletonCard from "../UI/Card/SkeletonCard";
 
 import "./Restaurant.css";
-import {
-  SWIGGY_RESTAURANT_DATA,
-  CLOUDINARY_IMAGE_STRING,
-} from "./restaurant-dummy-data";
+import { CLOUDINARY_IMAGE_STRING } from "./restaurant-dummy-data";
 
 import { SWIGGY_API } from "../../utils/constants";
 
 const Restaurant = ({ searchTerm }) => {
+  const [loading, setLoading] = useState(false);
   const [restaurantData, setRestaurantData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       const response = await fetch(SWIGGY_API);
       const value = await response.json();
 
@@ -22,6 +22,7 @@ const Restaurant = ({ searchTerm }) => {
       )?.data?.data?.cards;
 
       setRestaurantData(seeAllRestaurantData);
+      setLoading(false);
     };
     fetchData();
   }, []);
@@ -42,7 +43,13 @@ const Restaurant = ({ searchTerm }) => {
 
   return (
     <div className="restaurant-list">
-      {restaurantList?.length > 0 ? (
+      {loading ? (
+        <>
+          {[1, 2, 3, 4, 5, 6].map((num) => (
+            <SkeletonCard key={num} />
+          ))}
+        </>
+      ) : restaurantList?.length > 0 ? (
         restaurantList?.map((restaurant) => {
           const { id, cloudinaryImageId, name, cuisines, avgRating } =
             restaurant;
