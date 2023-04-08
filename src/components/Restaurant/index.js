@@ -27,10 +27,15 @@ const Restaurant = ({ searchTerm }) => {
     fetchData();
   }, []);
 
+  /**
+   * restaurantList: Used to filter the restaurantData and returns one of the below values:
+   *
+   *  * The complete restaurants list if no search term is present.
+   *  * If search term is present then it returns the restaurants filtered with the search term
+   */
   const restaurantList = useMemo(() => {
     const justRestaurantData = restaurantData?.map((item) => item?.data);
 
-    // Return the complete restaurants list if no search term is present
     if (!searchTerm) {
       return justRestaurantData;
     }
@@ -45,9 +50,11 @@ const Restaurant = ({ searchTerm }) => {
     <div className="restaurant-list">
       {loading ? (
         <>
-          {[1, 2, 3, 4, 5, 6].map((num) => (
-            <SkeletonCard key={num} />
-          ))}
+          {Array(10)
+            .fill("-")
+            .map((num, index) => (
+              <SkeletonCard key={index} />
+            ))}
         </>
       ) : restaurantList?.length > 0 ? (
         restaurantList?.map((restaurant) => {
