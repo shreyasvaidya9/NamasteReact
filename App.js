@@ -1,6 +1,17 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
+
 import Layout from "./src/components/Layout/Layout";
-import { Home } from "./src/pages";
+
+const App = () => {
+  return (
+    <Layout>
+      <Outlet />
+    </Layout>
+  );
+};
+
+export default App;
 
 /**
  * Header
@@ -21,13 +32,3 @@ import { Home } from "./src/pages";
  *  - links
  *  - Copyright
  */
-
-const App = () => {
-  return (
-    <Layout>
-      <Home />
-    </Layout>
-  );
-};
-
-export default App;

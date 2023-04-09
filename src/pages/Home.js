@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Restaurant from "../components/Restaurant";
+import { RestaurantList } from "../components/Restaurant";
 import { Search } from "../components/UI";
 
 const Home = () => {
@@ -27,7 +27,7 @@ const Home = () => {
         updateSearchTerm={updateSearchTerm}
         submitHandler={submitSearch}
       />
-      <Restaurant {...restaurantProps} />
+      <RestaurantList {...restaurantProps} />
     </>
   );
 };

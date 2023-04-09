@@ -1,0 +1,26 @@
+.restaurant-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .restaurant-details {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .restaurant-image {
+    margin-right: 1rem;
+  }
+}
+
+.restaurant-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.restaurant-info {
+  text-align: center;
+}

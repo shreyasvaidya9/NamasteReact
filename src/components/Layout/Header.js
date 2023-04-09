@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 import {
   Bars3Icon as Menubar,
@@ -71,9 +72,15 @@ const Header = () => {
         </button>
         <div className="nav-items" ref={navItemsRef}>
           <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact</li>
+            <li>
+              <NavLink to="/">Home</NavLink>
+            </li>
+            <li>
+              <NavLink to="/about">About</NavLink>
+            </li>
+            <li>
+              <NavLink to="/contact">Contact</NavLink>
+            </li>
             <li>Cart</li>
             {isAuthenticated ? (
               <li>

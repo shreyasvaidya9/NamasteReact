@@ -1,0 +1,41 @@
+.menu-container {
+  padding: 20px;
+}
+
+h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.menu-container > div {
+  width: 100%;
+}
+
+.menu-container > div > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.menu-container button {
+  margin-left: auto;
+}
+
+.category {
+  margin-left: 16px;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+h4 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  display: block;
+}
