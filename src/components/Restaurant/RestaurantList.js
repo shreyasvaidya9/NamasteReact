@@ -5,26 +5,11 @@ import SkeletonCard from "../UI/Card/SkeletonCard";
 import "./RestaurantList.css";
 
 import { CLOUDINARY_IMAGE_STRING, SWIGGY_API } from "../../utils/constants";
+import { filterRestaurantData } from "../../utils/helper";
+import { useRestaurantList } from "../../hooks";
 
 const RestaurantList = ({ searchTerm }) => {
-  const [loading, setLoading] = useState(false);
-  const [restaurantData, setRestaurantData] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const response = await fetch(SWIGGY_API);
-      const value = await response.json();
-
-      const seeAllRestaurantData = value?.data?.cards?.find(
-        (cardList) => cardList.cardType === "seeAllRestaurants"
-      )?.data?.data?.cards;
-
-      setRestaurantData(seeAllRestaurantData);
-      setLoading(false);
-    };
-    fetchData();
-  }, []);
+  const { restaurantData, loading, error } = useRestaurantList();
 
   /**
    * restaurantList: Used to filter the restaurantData and returns one of the below values:
@@ -40,9 +25,7 @@ const RestaurantList = ({ searchTerm }) => {
     }
 
     // Return the restaurants filtered with the search term
-    return justRestaurantData?.filter((restaurant) =>
-      restaurant?.name?.toLowerCase()?.includes(searchTerm?.toLowerCase())
-    );
+    return filterRestaurantData(justRestaurantData, searchTerm);
   }, [searchTerm, restaurantData]);
 
   if (loading) {
